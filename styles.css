@@ -1,9 +1,13 @@
 body {
     background-color: lightgrey;
+	font-family: 'RailwayRegular'; 
+   font-weight: normal; 
+   font-style: normal;
 }
 
+
 .div1 {
-    background-color:;
+    background-color:red;
     margin: 0 auto;
     width:80%;
     height:auto;
@@ -15,11 +19,8 @@ body {
     	width:80%;
 
 }
-
-
 #my-name {
 text-align:center;
-font-family: 'Helvetica', 'Arial', sans-serif;
 font-size: 31pt;
 }
 
