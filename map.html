@@ -3,10 +3,6 @@
 "http://www.w3.org/TR/html4/loose.dtd">
 
 
-<!-- TODO -ADD FAVICON -IMPROVE CONTENT - PROVIDE LINKS WITH MOUSEOVER-->
-<!-- TODO -ADD GOOGLE ANALYTICS-->
-
-
 <html lang="en">
 	<head>
 	<link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/railway-sans" type="text/css"/>
@@ -18,15 +14,67 @@
 	</head>
                     
 	<body>
-	<div id='map' style='width: 400px; height: 300px;'></div>
-<script>
-mapboxgl.accessToken = 'pk.eyJ1IjoiZGFuZGlrdW5pdGVkIiwiYSI6ImhOYkEycWsifQ.dnwBPozf5bF6KgA-CnukRg';
-var map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v9'
-});
+	<div id="page"> 
+<div id="map"></div>
+<div id="words">jajajaja</div>
+</div>
+<!-- Replace the value of the key parameter with your own API key. -->
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkKJj6a4ooM_QD8Q7RH9Dq6DVAkR3qITw&callback=initMap">
 </script>
 	</body>
+	<script>
+	// The following example creates a marker in Stockholm, Sweden using a DROP
+// animation. Clicking on the marker will toggle the animation between a BOUNCE
+// animation and no animation.
+
+var marker;
+
+function initMap() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 13,
+    center: {lat: 39.744416, lng: 37.016162}
+  });
+  
+  marker = new google.maps.Marker({
+    map: map,
+    draggable: true,
+    animation: google.maps.Animation.DROP,
+    position: {lat: 39.744416, lng: 37.016162}
+    });
+}
+
+function toggleBounce() {
+  if (marker.getAnimation() !== null) {
+    marker.setAnimation(null);
+  } else {
+    marker.setAnimation(google.maps.Animation.BOUNCE);
+  }
+}
+</script>
+	<style>
+	/* Always set the map height explicitly to define the size of the div
+ * element that contains the map. */
+ #page {
+ height: 100%;
+	padding: 0;
+}
+#map {
+height: 100%;
+  width: 60%;
+  float: left;
+  }
+  #words{
+  height: 100%;
+  float: left;
+  }
+/* Optional: Makes the sample page fill the window. */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+	</style>
 
 </html>
 
