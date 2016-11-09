@@ -1,0 +1,33 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+
+
+<!-- TODO -ADD FAVICON -IMPROVE CONTENT - PROVIDE LINKS WITH MOUSEOVER-->
+<!-- TODO -ADD GOOGLE ANALYTICS-->
+
+
+<html lang="en">
+	<head>
+	<link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/railway-sans" type="text/css"/>
+	<link rel="stylesheet" href="styles.css">
+	<script src='https://api.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css' rel='stylesheet' />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>A MAP</title>
+	</head>
+                    
+	<body>
+	<div id='map' style='width: 400px; height: 300px;'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiZGFuZGlrdW5pdGVkIiwiYSI6ImhOYkEycWsifQ.dnwBPozf5bF6KgA-CnukRg';
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v9'
+});
+</script>
+	</body>
+
+</html>
+
+
