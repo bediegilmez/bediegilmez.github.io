@@ -19,50 +19,51 @@
 
 function CenterControl(controlDiv, map) {
 
+	var goLeft = document.createElement('div');
+	goLeft.style.float = 'left';
+	goLeft.style.backgroundColor = '#fff';
+	goLeft.style.border = '2px solid #fff';
+	goLeft.style.borderRadius = '5px';
+	goLeft.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+	goLeft.style.cursor = 'pointer';
+	goLeft.style.marginBottom = '22px';
+	goLeft.style.textAlign = 'center';
+	goLeft.title = 'previous story';
+	controlDiv.appendChild(goLeft);
+
+	// Set CSS for the control interior.
+	var controlTextL = document.createElement('div');
+	controlTextL.style.float = 'left';
+	controlTextL.style.color = 'rgb(25,25,25)';
+	controlTextL.style.fontSize = '30px';
+	controlTextL.style.paddingLeft = '5px';
+	controlTextL.style.paddingRight = '5px';
+	controlTextL.innerHTML = '⬅️';
+	goLeft.appendChild(controlTextL);
+
 		// Set CSS for the control border.
 		var goRight = document.createElement('div');
+		goRight.style.float = 'left';
 		goRight.style.backgroundColor = '#fff';
 		goRight.style.border = '2px solid #fff';
-		goRight.style.borderRadius = '3px';
+		goRight.style.borderRadius = '5px';
 		goRight.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
 		goRight.style.cursor = 'pointer';
 		goRight.style.marginBottom = '22px';
 		goRight.style.textAlign = 'center';
-		goRight.title = 'Click to recenter the map';
+		goRight.title = 'next story';
 		controlDiv.appendChild(goRight);
 
 		// Set CSS for the control interior.
 		var controlTextR = document.createElement('div');
+		controlTextR.style.float = 'left';
 		controlTextR.style.color = 'rgb(25,25,25)';
-		controlTextR.style.fontFamily = 'Roboto,Arial,sans-serif';
-		controlTextR.style.fontSize = '16px';
-		controlTextR.style.lineHeight = '38px';
+		controlTextR.style.fontSize = '30px';
 		controlTextR.style.paddingLeft = '5px';
 		controlTextR.style.paddingRight = '5px';
 		controlTextR.innerHTML = '➡️';
 		goRight.appendChild(controlTextR);
 
-		var goLeft = document.createElement('div');
-		goLeft.style.backgroundColor = '#fff';
-		goLeft.style.border = '2px solid #fff';
-		goLeft.style.borderRadius = '3px';
-		goLeft.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
-		goLeft.style.cursor = 'pointer';
-		goLeft.style.marginBottom = '22px';
-		goLeft.style.textAlign = 'center';
-		goLeft.title = 'Click to recenter the map';
-		controlDiv.appendChild(goLeft);
-
-		// Set CSS for the control interior.
-		var controlTextL = document.createElement('div');
-		controlTextL.style.color = 'rgb(25,25,25)';
-		controlTextL.style.fontFamily = 'Roboto,Arial,sans-serif';
-		controlTextL.style.fontSize = '16px';
-		controlTextL.style.lineHeight = '38px';
-		controlTextL.style.paddingLeft = '5px';
-		controlTextL.style.paddingRight = '5px';
-		controlTextL.innerHTML = '⬅️';
-		goLeft.appendChild(controlTextL);
 
 		// Setup the click event listeners: simply set the map to Chicago.
 		goRight.addEventListener('click', function() {
@@ -89,9 +90,10 @@ map = new google.maps.Map(document.getElementById('map'), {
 		position: {lat: 39.744416, lng: 37.016162}
 	});
 	var centerControlDiv = document.createElement('div');
+	centerControlDiv.style.float = 'left';
 var centerControl = new CenterControl(centerControlDiv, map);
 
-centerControlDiv.index = 1;
+centerControlDiv.index = 2;
 map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
 }
 
