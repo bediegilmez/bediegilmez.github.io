@@ -1,81 +1,123 @@
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
 
 
 <html lang="en">
-	<head>
+<head>
 	<link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/railway-sans" type="text/css"/>
 	<link rel="stylesheet" href="styles.css">
-	<script src='https://api.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css' rel='stylesheet' />
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <title>A MAP</title>
-	</head>
-                    
-	<body>
-	<div id="page"> 
-<div id="map"></div>
-<div id="words">jajajaja</div>
-</div>
-<!-- Replace the value of the key parameter with your own API key. -->
-<script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkKJj6a4ooM_QD8Q7RH9Dq6DVAkR3qITw&callback=initMap">
-</script>
-	</body>
-	<script>
-	// The following example creates a marker in Stockholm, Sweden using a DROP
-// animation. Clicking on the marker will toggle the animation between a BOUNCE
-// animation and no animation.
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+		<script async defer
+			src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyAkKJj6a4ooM_QD8Q7RH9Dq6DVAkR3qITw&callback=initMap">
+		</script>
+	<title>A MAP</title>
+</head>
+
+<script>
 
 var marker;
+var map;
 
 function initMap() {
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 13,
-    center: {lat: 39.744416, lng: 37.016162}
-  });
-  
-  marker = new google.maps.Marker({
-    map: map,
-    draggable: true,
-    animation: google.maps.Animation.DROP,
-    position: {lat: 39.744416, lng: 37.016162}
-    });
+map = new google.maps.Map(document.getElementById('map'), {
+		zoom: 13,
+		center: {lat: 39.744416, lng: 37.016162}
+	});
+
+	marker = new google.maps.Marker({
+		map: map,
+		draggable: true,
+		animation: google.maps.Animation.DROP,
+		position: {lat: 39.744416, lng: 37.016162}
+	});
 }
 
 function toggleBounce() {
-  if (marker.getAnimation() !== null) {
-    marker.setAnimation(null);
-  } else {
-    marker.setAnimation(google.maps.Animation.BOUNCE);
-  }
+	if (marker.getAnimation() !== null) {
+		marker.setAnimation(null);
+	} else {
+		marker.setAnimation(google.maps.Animation.BOUNCE);
+	}
 }
+
+
+function newLocation(newLat,newLng)
+{
+	newMarker = new google.maps.Marker({
+		map: map,
+		draggable: true,
+		animation: google.maps.Animation.DROP,
+		position: {lat: newLat, lng: newLng}
+	});
+
+	map.setCenter({
+		lat : newLat,
+		lng : newLng
+	});
+	function toggleBounce() {
+		if (newMarker.getAnimation() !== null) {
+			newMarker.setAnimation(null);
+		} else {
+			newMarker.setAnimation(google.maps.Animation.BOUNCE);
+		}
+	}
+
+}
+
+$(document).ready(function ()
+{
+		$("#1").on('click', function ()
+		{
+		newLocation(48.1293954,11.556663);
+	});
+
+	$("#2").on('click', function ()
+		{
+		newLocation(40.7033127,-73.979681);
+	});
+
+		$("#3").on('click', function ()
+		{
+		newLocation(55.749792,37.632495);
+	});
+});
+
 </script>
-	<style>
-	/* Always set the map height explicitly to define the size of the div
- * element that contains the map. */
- #page {
- height: 100%;
+
+<body>
+	<div id="page">
+		<div id="map"></div>
+		<div id="words">jajajaja
+			<button id="1" style="padding:10px; cursor:pointer;">Munich</button>
+	<button id="2" style="padding:10px;cursor:pointer;">New York</button>
+	<button id="3" style="padding:10px;cursor:pointer;">Moscow</button></div>
+	</div>
+	<!-- Replace the value of the key parameter with your own API key. -->
+</body>
+<style>
+/* Always set the map height explicitly to define the size of the div
+* element that contains the map. */
+#page {
+	height: 100%;
 	padding: 0;
 }
 #map {
-height: 100%;
-  width: 60%;
-  float: left;
-  }
-  #words{
-  height: 100%;
-  float: left;
-  }
+	height: 100%;
+	width: 60%;
+	float: left;
+}
+#words{
+	height: 100%;
+	float: left;
+}
 /* Optional: Makes the sample page fill the window. */
 html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	background-color: rgb(209, 209, 209);
 }
-	</style>
+</style>
 
 </html>
-
-

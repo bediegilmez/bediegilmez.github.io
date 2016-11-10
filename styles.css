@@ -1,7 +1,7 @@
 body {
     background-color: lightgray;
-	font-family: 'Arial', Helvetica, sans-serif; 
-   font-weight: normal; 
+	font-family: 'Arial', Helvetica, sans-serif;
+   font-weight: normal;
    font-style: normal;
 }
 
@@ -34,9 +34,7 @@ font-size: 14pt;
 
 #my-urls {
 margin: 5%;
-
 }
-
 
 #top_gradient {
     width: 100%;
@@ -45,7 +43,8 @@ margin: 5%;
     position: fixed;
     top: 0px;
     pointer-events: none;
-    background-image: -webkit-gradient( linear, left top, left bottom, color-stop(0, lightgray), color-stop(1, rgba(113, 191, 69, 0)));
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, lightgray),
+    color-stop(1, rgba(113, 191, 69, 0)));
 }
 
 #bottom_gradient {
