@@ -71,15 +71,10 @@ function CenterControl(controlDiv, map) {
 		var targetStory = 0;
 
 		goRight.addEventListener('click', function() {
-			map.setCenter({lat: 51.535834, lng: 0.0622743});
-			targetStory += 1;
-			$('#cs').text(stories[targetStory.toString()]);
 			goToStory(targetStory);
 		});
+
 		goLeft.addEventListener('click', function() {
-			map.setCenter({lat: 51.5077987, lng: -0.7937638});
-			targetStory -= 1;
-			$('#cs').text(stories[targetStory.toString()]);
 			goToStory(targetStory);
 		});
 	}
