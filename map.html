@@ -71,10 +71,12 @@ function CenterControl(controlDiv, map) {
 		var targetStory = 0;
 
 		goRight.addEventListener('click', function() {
+			targetStory +=1
 			goToStory(targetStory);
 		});
 
 		goLeft.addEventListener('click', function() {
+			targetStory -=1
 			goToStory(targetStory);
 		});
 	}
