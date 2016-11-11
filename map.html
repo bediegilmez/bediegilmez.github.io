@@ -73,12 +73,12 @@ function CenterControl(controlDiv, map) {
 		goRight.addEventListener('click', function() {
 			map.setCenter({lat: 51.535834, lng: 0.0622743});
 			currentStory += 1;
-			$('#cs').text(stories[currentStory]);
+			$('#cs').text(stories[currentStory.toString()]);
 		});
 		goLeft.addEventListener('click', function() {
 			map.setCenter({lat: 51.5077987, lng: -0.7937638});
 			currentStory -= 1;
-			$('#cs').text(stories[currentStory]);
+			$('#cs').text(stories[currentStory.toString()]);
 		});
 	}
 
@@ -155,9 +155,9 @@ function justPinDrop(pinLat,pinLon){
 };
 
 function goToStory(storyId){
-	lat = stories[storyId].lat;
-	lng = stories[storyId].lng;
-	zoom = stories[storyId].zoom;
+	lat = stories[storyId.toString()].lat;
+	lng = stories[storyId.toString()].lng;
+	zoom = stories[storyId.toString()].zoom;
 
 }
 
