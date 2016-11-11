@@ -16,7 +16,7 @@
 <script>
 var stories;
 $.getJSON('stories.json', function(data) {
-    stories = data;
+    stories = JSON.parse(data);
 });
 
 function CenterControl(controlDiv, map) {
