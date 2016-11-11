@@ -68,17 +68,19 @@ function CenterControl(controlDiv, map) {
 
 
 		// Setup the click event listeners: simply set the map to Chicago.
-		var currentStory = 0;
+		var targetStory = 0;
 
 		goRight.addEventListener('click', function() {
 			map.setCenter({lat: 51.535834, lng: 0.0622743});
-			currentStory += 1;
-			$('#cs').text(stories[currentStory.toString()]);
+			targetStory += 1;
+			$('#cs').text(stories[targetStory.toString()]);
+			goToStory(targetStory);
 		});
 		goLeft.addEventListener('click', function() {
 			map.setCenter({lat: 51.5077987, lng: -0.7937638});
-			currentStory -= 1;
-			$('#cs').text(stories[currentStory.toString()]);
+			targetStory -= 1;
+			$('#cs').text(stories[targetStory.toString()]);
+			goToStory(targetStory);
 		});
 	}
 
