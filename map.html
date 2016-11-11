@@ -13,9 +13,12 @@
 		</script>
 	<title>A MAP</title>
 </head>
-
 <script>
 
+$.getJSON('stories.json', function(data) {
+    alert(data);
+		stories = data;
+});
 
 function CenterControl(controlDiv, map) {
 
@@ -66,20 +69,25 @@ function CenterControl(controlDiv, map) {
 
 
 		// Setup the click event listeners: simply set the map to Chicago.
+		var currentStory = 0;
+
 		goRight.addEventListener('click', function() {
 			map.setCenter({lat: 51.535834, lng: 0.0622743});
+			currentStory += 1;
+			$('#cs').text(currentStory);
 		});
 		goLeft.addEventListener('click', function() {
 			map.setCenter({lat: 51.5077987, lng: -0.7937638});
+			currentStory -= 1;
+			$('#cs').text(currentStory);
 		});
-
 	}
 
 var marker;
 var map;
 function initMap() {
 map = new google.maps.Map(document.getElementById('map'), {
-		zoom: 13,
+		zoom: 6,
 		center: {lat: 39.744416, lng: 37.016162},
 		disableDefaultUI: true
 	});
@@ -97,8 +105,6 @@ centerControlDiv.index = 2;
 map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
 }
 
-
-
 function toggleBounce() {
 	if (marker.getAnimation() !== null) {
 		marker.setAnimation(null);
@@ -107,20 +113,19 @@ function toggleBounce() {
 	}
 }
 
-
-function newLocation(newLat,newLng)
+function newLocation(newLat,newLng,z)
 {
+	map.setZoom(z);
+	map.setCenter({
+		lat : newLat,
+		lng : newLng});
 	newMarker = new google.maps.Marker({
 		map: map,
 		draggable: true,
 		animation: google.maps.Animation.DROP,
-		position: {lat: newLat, lng: newLng}
+		position: {lat: newLat, lng: newLng},
 	});
 
-	map.setCenter({
-		lat : newLat,
-		lng : newLng
-	});
 	function toggleBounce() {
 		if (newMarker.getAnimation() !== null) {
 			newMarker.setAnimation(null);
@@ -130,33 +135,66 @@ function newLocation(newLat,newLng)
 	}
 }
 
+function zoomOutAndCenter(tempLat,tempLng,zoomLevel){
+	map.setZoom(zoomLevel);
+	map.setCenter({
+		lat : tempLat,
+		lng : tempLng});
+};
+
+function justZoomIn(zoomLevel){
+	map.setZoom(zoomLevel);
+};
+
+function justPinDrop(pinLat,pinLon){
+	newMarker = new google.maps.Marker({
+		map: map,
+		draggable: true,
+		animation: google.maps.Animation.DROP,
+		position: {lat: pinLat, lng: pinLon},
+	});
+};
+
+function goToStory(storyId){
+	lat = stories[storyId].lat;
+	lng = stories[storyId].lng;
+	zoom = stories[storyId].zoom;
+
+}
+
+
 $(document).ready(function ()
 {
 		$("#1").on('click', function ()
 		{
-		newLocation(36.814152, 34.641233);
+		newLocation(36.814152, 34.641233,8);
 	});
 
 	$("#2").on('click', function ()
 		{
-		newLocation(39.759057, 37.009743);
+		zoomOutAndCenter(39.759057, 37.009743,6);
+		setTimeout(function(){zoomOutAndCenter(39.759057, 37.009743,8)}, 1000);
+		setTimeout(function(){newLocation(39.759057, 37.009743,10)}, 1600);
+		setTimeout(function(){newLocation(39.759057, 37.009743,12)}, 2100);
 	});
 
 		$("#3").on('click', function ()
 		{
-		newLocation(41.203518, 29.072729);
+		newLocation(41.203518, 29.072729,6);
 	});
 		$("#4").on('click', function ()
 		{
-		newLocation(41.059497, 29.035570);
+		zoomOutAndCenter(41.059497, 29.03557,8);
+		setTimeout(function(){newLocation(41.059497, 29.035570,10)}, 1000);
 	});
 		$("#5").on('click', function ()
 		{
-		newLocation(51.523437, -0.040500);
+		zoomOutAndCenter(47.6783073,11.1024347,4);
+		justPinDrop(51.523437, -0.040500);
 	});
 		$("#6").on('click', function ()
 		{
-		newLocation(37.4440259,-122.1633045);
+		newLocation(37.4440259,-122.1633045,14);
 	});
 });
 
@@ -166,12 +204,15 @@ $(document).ready(function ()
 	<div id="page">
 		<div id="map"></div>
 		<div id="words">
+			<div>
 			<button id="1" style="padding:10px; cursor:pointer;">Mersin</button>
 	<button id="2" style="padding:10px;cursor:pointer;">Sivas</button>
 	<button id="3" style="padding:10px;cursor:pointer;">Koc</button>
 	<button id="4" style="padding:10px;cursor:pointer;">Mekanist</button>
 	<button id="5" style="padding:10px;cursor:pointer;">Londra</button>
 	<button id="6" style="padding:10px;cursor:pointer;">Palo Alto</button>
+</div>
+	<div id="cs">CORK</div>
 	</div>
 	<!-- Replace the value of the key parameter with your own API key. -->
 </body>
@@ -184,7 +225,7 @@ $(document).ready(function ()
 }
 #map {
 	height: 100%;
-	width: 70%;
+	width: 60%;
 	float: left;
 }
 #words{
