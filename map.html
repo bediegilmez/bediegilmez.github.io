@@ -155,10 +155,10 @@ function justPinDrop(pinLat,pinLon){
 };
 
 function goToStory(storyId){
-	lat = stories[storyId.toString()].lat;
-	lng = stories[storyId.toString()].lng;
-	zoom = stories[storyId.toString()].zoom;
-
+	lat = stories[storyId.toString()]["lat"];
+	lng = stories[storyId.toString()]["lng"];
+	zoom = stories[storyId.toString()]["zoom"];
+	newLocation(lat,lng,zoom);
 }
 
 
