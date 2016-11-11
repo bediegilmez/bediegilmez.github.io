@@ -14,9 +14,9 @@
 	<title>A MAP</title>
 </head>
 <script>
-
+var stories;
 $.getJSON('stories.json', function(data) {
-    var stories = data;
+    stories = data;
 });
 
 function CenterControl(controlDiv, map) {
