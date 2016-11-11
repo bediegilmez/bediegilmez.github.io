@@ -155,9 +155,9 @@ function justPinDrop(pinLat,pinLon){
 };
 
 function goToStory(storyId){
-	lat = stories[storyId.toString()]["lat"];
-	lng = stories[storyId.toString()]["lng"];
-	zoom = stories[storyId.toString()]["zoom"];
+	lat = parseFloat(stories[storyId.toString()]["lat"]);
+	lng = parseFloat(stories[storyId.toString()]["lng"]);
+	zoom = parseInt(stories[storyId.toString()]["zoom"]);
 	newLocation(lat,lng,zoom);
 }
 
