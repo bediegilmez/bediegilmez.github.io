@@ -18,7 +18,7 @@ var stories;
 $.getJSON('stories.json', function(data) {
     stories = data;
 });
-
+var storiesLen = Object.keys(stories).length;
 function CenterControl(controlDiv, map) {
 
 	var goLeft = document.createElement('div');
@@ -71,11 +71,11 @@ function CenterControl(controlDiv, map) {
 		var targetStory = 0;
 
 		goRight.addEventListener('click', function() {
-	if (targetStory < stories.length){
+	if (targetStory < storiesLen){
 			targetStory +=1;
 		 }
 		 else{
-			 targetStory = stories.length - 1;
+			 targetStory = storiesLen - 1;
 		 }
 			goToStory(targetStory);
 		});
