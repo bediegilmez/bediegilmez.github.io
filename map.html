@@ -8,17 +8,17 @@
 	<link rel="stylesheet" href="styles.css">
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-		<script async defer
-			src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyAkKJj6a4ooM_QD8Q7RH9Dq6DVAkR3qITw&callback=initMap">
-		</script>
+	<script async defer
+	src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyAkKJj6a4ooM_QD8Q7RH9Dq6DVAkR3qITw&callback=initMap">
+	</script>
 	<title>A MAP</title>
 </head>
 <script>
 var stories;
 var storiesLen;
 $.getJSON('stories.json', function(data) {
-    stories = data;
-		storiesLen = Object.keys(stories).length;
+	stories = data;
+	storiesLen = Object.keys(stories).length;
 });
 
 function CenterControl(controlDiv, map) {
@@ -45,58 +45,58 @@ function CenterControl(controlDiv, map) {
 	controlTextL.innerHTML = '⬅️';
 	goLeft.appendChild(controlTextL);
 
-		// Set CSS for the control border.
-		var goRight = document.createElement('div');
-		goRight.style.float = 'left';
-		goRight.style.backgroundColor = '#fff';
-		goRight.style.border = '2px solid #fff';
-		goRight.style.borderRadius = '5px';
-		goRight.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
-		goRight.style.cursor = 'pointer';
-		goRight.style.marginBottom = '22px';
-		goRight.style.textAlign = 'center';
-		goRight.title = 'next story';
-		controlDiv.appendChild(goRight);
+	// Set CSS for the control border.
+	var goRight = document.createElement('div');
+	goRight.style.float = 'left';
+	goRight.style.backgroundColor = '#fff';
+	goRight.style.border = '2px solid #fff';
+	goRight.style.borderRadius = '5px';
+	goRight.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+	goRight.style.cursor = 'pointer';
+	goRight.style.marginBottom = '22px';
+	goRight.style.textAlign = 'center';
+	goRight.title = 'next story';
+	controlDiv.appendChild(goRight);
 
-		// Set CSS for the control interior.
-		var controlTextR = document.createElement('div');
-		controlTextR.style.float = 'left';
-		controlTextR.style.color = 'rgb(25,25,25)';
-		controlTextR.style.fontSize = '30px';
-		controlTextR.style.paddingLeft = '5px';
-		controlTextR.style.paddingRight = '5px';
-		controlTextR.innerHTML = '➡️';
-		goRight.appendChild(controlTextR);
+	// Set CSS for the control interior.
+	var controlTextR = document.createElement('div');
+	controlTextR.style.float = 'left';
+	controlTextR.style.color = 'rgb(25,25,25)';
+	controlTextR.style.fontSize = '30px';
+	controlTextR.style.paddingLeft = '5px';
+	controlTextR.style.paddingRight = '5px';
+	controlTextR.innerHTML = '➡️';
+	goRight.appendChild(controlTextR);
 
 
-		// Setup the click event listeners: simply set the map to Chicago.
-		var targetStory = 0;
+	// Setup the click event listeners: simply set the map to Chicago.
+	var targetStory = 0;
 
-		goRight.addEventListener('click', function() {
-	if (targetStory < storiesLen){
+	goRight.addEventListener('click', function() {
+		if (targetStory < storiesLen){
 			targetStory +=1;
-		 }
-		 else{
-			 targetStory = storiesLen - 1;
-		 }
-			goToStory(targetStory);
-		});
+		}
+		else{
+			targetStory = storiesLen - 1;
+		}
+		goToStory(targetStory);
+	});
 
-		goLeft.addEventListener('click', function() {
-			if (targetStory != 0){
+	goLeft.addEventListener('click', function() {
+		if (targetStory != 0){
 			targetStory -= 1;
 		}
-			else{
-					targetStory = 0;
-			}
-			goToStory(targetStory);
-		});
-	}
+		else{
+			targetStory = 0;
+		}
+		goToStory(targetStory);
+	});
+}
 
 var marker;
 var map;
 function initMap() {
-map = new google.maps.Map(document.getElementById('map'), {
+	map = new google.maps.Map(document.getElementById('map'), {
 		zoom: 6,
 		center: {lat: 39.744416, lng: 37.016162},
 		disableDefaultUI: true
@@ -109,10 +109,10 @@ map = new google.maps.Map(document.getElementById('map'), {
 	});
 	var centerControlDiv = document.createElement('div');
 	centerControlDiv.style.float = 'left';
-var centerControl = new CenterControl(centerControlDiv, map);
+	var centerControl = new CenterControl(centerControlDiv, map);
 
-centerControlDiv.index = 2;
-map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
+	centerControlDiv.index = 2;
+	map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
 }
 
 function toggleBounce() {
@@ -129,126 +129,123 @@ function newLocation(newLat,newLng,z)
 	map.setCenter({
 		lat : newLat,
 		lng : newLng});
-	newMarker = new google.maps.Marker({
-		map: map,
-		draggable: true,
-		animation: google.maps.Animation.DROP,
-		position: {lat: newLat, lng: newLng},
-	});
+		newMarker = new google.maps.Marker({
+			map: map,
+			draggable: true,
+			animation: google.maps.Animation.DROP,
+			position: {lat: newLat, lng: newLng},
+		});
 
-	function toggleBounce() {
-		if (newMarker.getAnimation() !== null) {
-			newMarker.setAnimation(null);
-		} else {
-			newMarker.setAnimation(google.maps.Animation.BOUNCE);
+		function toggleBounce() {
+			if (newMarker.getAnimation() !== null) {
+				newMarker.setAnimation(null);
+			} else {
+				newMarker.setAnimation(google.maps.Animation.BOUNCE);
+			}
 		}
 	}
-}
 
-function zoomOutAndCenter(tempLat,tempLng,zoomLevel){
-	map.setZoom(zoomLevel);
-	map.setCenter({
-		lat : tempLat,
-		lng : tempLng});
-};
+	function zoomOutAndCenter(tempLat,tempLng,zoomLevel){
+		map.setZoom(zoomLevel);
+		map.setCenter({
+			lat : tempLat,
+			lng : tempLng});
+		};
 
-function justZoomIn(zoomLevel){
-	map.setZoom(zoomLevel);
-};
+		function justZoomIn(zoomLevel){
+			map.setZoom(zoomLevel);
+		};
 
-function justPinDrop(pinLat,pinLon){
-	newMarker = new google.maps.Marker({
-		map: map,
-		draggable: true,
-		animation: google.maps.Animation.DROP,
-		position: {lat: pinLat, lng: pinLon},
-	});
-};
+		function justPinDrop(pinLat,pinLon){
+			newMarker = new google.maps.Marker({
+				map: map,
+				draggable: true,
+				animation: google.maps.Animation.DROP,
+				position: {lat: pinLat, lng: pinLon},
+			});
+		};
 
-function goToStory(storyId){
-	lat = parseFloat(stories[storyId.toString()]["lat"]);
-	lng = parseFloat(stories[storyId.toString()]["lng"]);
-	zoom = parseInt(stories[storyId.toString()]["zoom"]);
-	newLocation(lat,lng,zoom);
-}
+		function goToStory(storyId){
+			lat = parseFloat(stories[storyId.toString()]["lat"]);
+			lng = parseFloat(stories[storyId.toString()]["lng"]);
+			zoom = parseInt(stories[storyId.toString()]["zoom"]);
+			newLocation(lat,lng,zoom);
+		}
 
 
-$(document).ready(function ()
-{
-		$("#1").on('click', function ()
+		$(document).ready(function ()
 		{
-		newLocation(36.814152, 34.641233,8);
-	});
+			$("#1").on('click', function ()
+			{
+				newLocation(36.814152, 34.641233,8);
+			});
 
-	$("#2").on('click', function ()
-		{
-		zoomOutAndCenter(39.759057, 37.009743,6);
-		setTimeout(function(){zoomOutAndCenter(39.759057, 37.009743,8)}, 1000);
-		setTimeout(function(){newLocation(39.759057, 37.009743,10)}, 1600);
-		setTimeout(function(){newLocation(39.759057, 37.009743,12)}, 2100);
-	});
+			$("#2").on('click', function ()
+			{
+				zoomOutAndCenter(39.759057, 37.009743,6);
+				setTimeout(function(){zoomOutAndCenter(39.759057, 37.009743,8)}, 1000);
+				setTimeout(function(){newLocation(39.759057, 37.009743,10)}, 1600);
+				setTimeout(function(){newLocation(39.759057, 37.009743,12)}, 2100);
+			});
 
-		$("#3").on('click', function ()
-		{
-		newLocation(41.203518, 29.072729,6);
-	});
-		$("#4").on('click', function ()
-		{
-		zoomOutAndCenter(41.059497, 29.03557,8);
-		setTimeout(function(){newLocation(41.059497, 29.035570,10)}, 1000);
-	});
-		$("#5").on('click', function ()
-		{
-		zoomOutAndCenter(47.6783073,11.1024347,4);
-		justPinDrop(51.523437, -0.040500);
-	});
-		$("#6").on('click', function ()
-		{
-		newLocation(37.4440259,-122.1633045,14);
-	});
-});
+			$("#3").on('click', function ()
+			{
+				newLocation(41.203518, 29.072729,6);
+			});
+			$("#4").on('click', function ()
+			{
+				zoomOutAndCenter(41.059497, 29.03557,8);
+				setTimeout(function(){newLocation(41.059497, 29.035570,10)}, 1000);
+			});
+			$("#5").on('click', function ()
+			{
+				zoomOutAndCenter(47.6783073,11.1024347,4);
+				justPinDrop(51.523437, -0.040500);
+			});
+			$("#6").on('click', function ()
+			{
+				newLocation(37.4440259,-122.1633045,14);
+			});
+		});
 
-</script>
+		</script>
 
-<body>
-	<div id="page">
-		<div id="map"></div>
-		<div id="words">
-			<div>
-			<button id="1" style="padding:10px; cursor:pointer;">Mersin</button>
-	<button id="2" style="padding:10px;cursor:pointer;">Sivas</button>
-	<button id="3" style="padding:10px;cursor:pointer;">Koc</button>
-	<button id="4" style="padding:10px;cursor:pointer;">Mekanist</button>
-	<button id="5" style="padding:10px;cursor:pointer;">Londra</button>
-	<button id="6" style="padding:10px;cursor:pointer;">Palo Alto</button>
+		<body>
+			<div id="page">
+				<div id="map"></div>
+				<div id="words">
+					<div style="float:left; position:absolute;">
+						<h1 style="padding: 10px;">Hello, I'm Bedi!</h1>
+						<div style="float: left;">
+VeryLongLongLongLongLongLongLongLongLongLongLongLongExample
 </div>
-	<div id="cs">CORK</div>
-	</div>
-	<!-- Replace the value of the key parameter with your own API key. -->
-</body>
-<style>
-/* Always set the map height explicitly to define the size of the div
-* element that contains the map. */
-#page {
-	height: 100%;
-	padding: 0;
-}
-#map {
-	height: 100%;
-	width: 60%;
-	float: left;
-}
-#words{
-	height: 100%;
-	float: left;
-}
-/* Optional: Makes the sample page fill the window. */
-html, body {
-	height: 100%;
-	margin: 0;
-	padding: 0;
-	background-color: rgb(209, 209, 209);
-}
-</style>
 
-</html>
+					</div>
+					<!-- Replace the value of the key parameter with your own API key. -->
+				</body>
+				<style>
+				/* Always set the map height explicitly to define the size of the div
+				* element that contains the map. */
+				#page {
+					height: 100%;
+					padding: 0;
+				}
+				#map {
+					height: 100%;
+					width: 60%;
+					float: left;
+				}
+				#words{
+					height: 100%;
+					float: left;
+				}
+				/* Optional: Makes the sample page fill the window. */
+				html, body {
+					height: 100%;
+					margin: 0;
+					padding: 0;
+					background-color: rgb(209, 209, 209);
+				}
+				</style>
+
+				</html>
