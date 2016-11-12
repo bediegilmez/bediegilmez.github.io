@@ -15,10 +15,12 @@
 </head>
 <script>
 var stories;
+var storiesLen;
 $.getJSON('stories.json', function(data) {
     stories = data;
+		storiesLen = Object.keys(stories).length;
 });
-var storiesLen = Object.keys(stories).length;
+
 function CenterControl(controlDiv, map) {
 
 	var goLeft = document.createElement('div');
