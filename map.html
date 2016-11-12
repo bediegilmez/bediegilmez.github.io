@@ -8,9 +8,15 @@
 	<link rel="stylesheet" href="styles.css">
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script async defer
 	src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyAkKJj6a4ooM_QD8Q7RH9Dq6DVAkR3qITw&callback=initMap">
 	</script>
+	<script>
+ $( function() {
+	 $( "#accordion" ).accordion();
+ } );
+ </script>
 	<title>A MAP</title>
 </head>
 <script>
@@ -172,42 +178,6 @@ function newLocation(newLat,newLng,z)
 			newLocation(lat,lng,zoom);
 		}
 
-
-		$(document).ready(function ()
-		{
-			$("#1").on('click', function ()
-			{
-				newLocation(36.814152, 34.641233,8);
-			});
-
-			$("#2").on('click', function ()
-			{
-				zoomOutAndCenter(39.759057, 37.009743,6);
-				setTimeout(function(){zoomOutAndCenter(39.759057, 37.009743,8)}, 1000);
-				setTimeout(function(){newLocation(39.759057, 37.009743,10)}, 1600);
-				setTimeout(function(){newLocation(39.759057, 37.009743,12)}, 2100);
-			});
-
-			$("#3").on('click', function ()
-			{
-				newLocation(41.203518, 29.072729,6);
-			});
-			$("#4").on('click', function ()
-			{
-				zoomOutAndCenter(41.059497, 29.03557,8);
-				setTimeout(function(){newLocation(41.059497, 29.035570,10)}, 1000);
-			});
-			$("#5").on('click', function ()
-			{
-				zoomOutAndCenter(47.6783073,11.1024347,4);
-				justPinDrop(51.523437, -0.040500);
-			});
-			$("#6").on('click', function ()
-			{
-				newLocation(37.4440259,-122.1633045,14);
-			});
-		});
-
 		</script>
 
 		<body>
@@ -216,8 +186,74 @@ function newLocation(newLat,newLng,z)
 				<div id="words">
 					<div style="float:left; position:absolute;">
 						<h1 style="padding: 10px;">Hello, I'm Bedi!</h1>
-						<div style="float: left;">
-VeryLongLongLongLongLongLongLongLongLongLongLongLongExample
+<div id="accordion">
+  <h3>Sivas, Turkey</h3>
+  <div>
+    Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
+    ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
+    amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
+    odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+  </div>
+  <h3>Mersin, Turkey</h3>
+  <div>
+    <p>
+    Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet
+    purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor
+    velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In
+    suscipit faucibus urna.
+    </p>
+  </div>
+  <h3>Sariyer, Istanbul, Turkey</h3>
+  <div>
+    <p>
+    Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis.
+    Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero
+    ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis
+    lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.
+    </p>
+  </div>
+  <h3>Kurucesme, Istanbul, Turkey</h3>
+  <div>
+    <p>
+    Cras dictum. Pellentesque habitant morbi tristique senectus et netus
+    et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
+    faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
+    mauris vel est.
+    </p>
+    <p>
+    Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus.
+    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
+    inceptos himenaeos.
+    </p>
+  </div>
+	<h3>London, United Kingdom</h3>
+	<div>
+		<p>
+		Cras dictum. Pellentesque habitant morbi tristique senectus et netus
+		et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
+		faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
+		mauris vel est.
+		</p>
+		<p>
+		Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus.
+		Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
+		inceptos himenaeos.
+		</p>
+	</div>
+	<h3>Palo Alto, California, USA</h3>
+	<div>
+		<p>
+		Cras dictum. Pellentesque habitant morbi tristique senectus et netus
+		et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
+		faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
+		mauris vel est.
+		</p>
+		<p>
+		Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus.
+		Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
+		inceptos himenaeos.
+		</p>
+	</div>
 </div>
 
 					</div>
