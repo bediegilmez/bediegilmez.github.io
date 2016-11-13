@@ -15,14 +15,14 @@
 	<script>
  $( function() {
 	 var $accordion = $( "#accordion" ).accordion();
- } );
 	 function openNextAccordionPanel() {
-
 	 var current = $accordion.accordion("option", "active"),
 	 maximum = $accordion.find("h3").length,
 	 next = current + 1 === maximum ? 0 : current + 1;
 					 $accordion.accordion("activate", next);
-}
+ }
+ } );
+
  </script>
 	<title>A MAP</title>
 </head>
