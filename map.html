@@ -14,9 +14,8 @@
 	</script>
 	<script>
  $( function() {
-	 $( "#accordion" ).accordion();
+	 var $accordion = $( "#accordion" ).accordion();
  } );
- var $accordion = $("#accordion").accordion();
 	 function openNextAccordionPanel() {
 
 	 var current = $accordion.accordion("option", "active"),
