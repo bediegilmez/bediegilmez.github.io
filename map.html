@@ -186,6 +186,13 @@ function newLocation(newLat,newLng,z)
 			newLocation(lat,lng,zoom);
 		}
 
+		function openNextAccordionPanel() {
+		var current = $accordion.accordion("option", "active"),
+		maximum = $accordion.find("h3").length,
+		next = current + 1 === maximum ? 0 : current + 1;
+						$accordion.accordion("activate", next);
+	}
+
 		</script>
 
 		<body>
