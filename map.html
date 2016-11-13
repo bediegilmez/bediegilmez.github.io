@@ -187,6 +187,7 @@ function newLocation(newLat,newLng,z)
 		}
 
 		function openNextAccordionPanel() {
+		var $accordion = $( "#accordion" ).accordion();
 		var current = $accordion.accordion("option", "active"),
 		maximum = $accordion.find("h3").length,
 		next = current + 1 === maximum ? 0 : current + 1;
