@@ -188,7 +188,7 @@ function newLocation(newLat,newLng,z)
 
 		function openNextAccordionPanel(next) {
 		var $accordion = $( "#accordion" ).accordion();
-		$accordion.accordion("activate", next);
+		$accordion.accordion("option", "activate", next);
 	}
 
 		</script>
