@@ -47,7 +47,6 @@ function CenterControl(controlDiv, map) {
 	goLeft.style.marginBottom = '22px';
 	goLeft.style.textAlign = 'center';
 	goLeft.title = 'previous story';
-	goLeft.addEventListener("click", openNextAccordionPanel);
 	controlDiv.appendChild(goLeft);
 
 	// Set CSS for the control interior.
@@ -71,7 +70,6 @@ function CenterControl(controlDiv, map) {
 	goRight.style.marginBottom = '22px';
 	goRight.style.textAlign = 'center';
 	goRight.title = 'next story';
-	goRight.onclick = 'openNextAccordionPanel()';
 	controlDiv.appendChild(goRight);
 
 	// Set CSS for the control interior.
@@ -96,6 +94,7 @@ function CenterControl(controlDiv, map) {
 			targetStory = storiesLen - 1;
 		}
 		goToStory(targetStory);
+		openNextAccordionPanel();
 	});
 
 	goLeft.addEventListener('click', function() {
