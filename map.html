@@ -16,6 +16,14 @@
  $( function() {
 	 $( "#accordion" ).accordion();
  } );
+ var $accordion = $("#accordion").accordion();
+	 function openNextAccordionPanel() {
+
+	 var current = $accordion.accordion("option", "active"),
+	 maximum = $accordion.find("h3").length,
+	 next = current + 1 === maximum ? 0 : current + 1;
+					 $accordion.accordion("activate", next);
+}
  </script>
 	<title>A MAP</title>
 </head>
@@ -62,6 +70,7 @@ function CenterControl(controlDiv, map) {
 	goRight.style.marginBottom = '22px';
 	goRight.style.textAlign = 'center';
 	goRight.title = 'next story';
+	goRight.onclick = 'openNextAccordionPanel()'
 	controlDiv.appendChild(goRight);
 
 	// Set CSS for the control interior.
@@ -203,6 +212,15 @@ function newLocation(newLat,newLng,z)
     suscipit faucibus urna.
     </p>
   </div>
+	<h3>Sivas, Turkey</h3>
+	<div>
+		<p>
+		Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet
+		purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor
+		velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In
+		suscipit faucibus urna.
+		</p>
+	</div>
   <h3>Sariyer, Istanbul, Turkey</h3>
   <div>
     <p>
