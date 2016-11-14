@@ -7,7 +7,7 @@
 	<link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/railway-sans" type="text/css"/>
 	<link rel="stylesheet" href="styles.css">
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
-	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script async defer
 	src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyAkKJj6a4ooM_QD8Q7RH9Dq6DVAkR3qITw&callback=initMap">
@@ -15,7 +15,8 @@
 	<script>
  $( function() {
 	 var $accordion = $( "#accordion" ).accordion({
-		 active: 0
+		 active: 0,
+        collapsible: true,
 	 });
  } );
 
@@ -25,7 +26,8 @@
 <script>
 var stories;
 var storiesLen;
-$.getJSON('stories.json', function(data) {
+//$.getJSON('stories.json', function(data) {
+	$.getJSON('https://bediegilmez.github.io/stories.json', function(data) {
 	stories = data;
 	storiesLen = Object.keys(stories).length;
 });
@@ -33,6 +35,7 @@ $.getJSON('stories.json', function(data) {
 function CenterControl(controlDiv, map) {
 
 	var goLeft = document.createElement('div');
+	goLeft.id = 'previousStory';
 	goLeft.style.float = 'left';
 	goLeft.style.backgroundColor = '#fff';
 	goLeft.style.border = '2px solid #fff';
@@ -56,6 +59,7 @@ function CenterControl(controlDiv, map) {
 
 	// Set CSS for the control border.
 	var goRight = document.createElement('div');
+	goRight.id = 'nextStory';
 	goRight.style.float = 'left';
 	goRight.style.backgroundColor = '#fff';
 	goRight.style.border = '2px solid #fff';
@@ -100,6 +104,7 @@ function CenterControl(controlDiv, map) {
 			targetStory = 0;
 		}
 		goToStory(targetStory);
+		openNextAccordionPanel(targetStory);
 	});
 }
 
@@ -182,10 +187,14 @@ function newLocation(newLat,newLng,z)
 			newLocation(lat,lng,zoom);
 		}
 
-		function openNextAccordionPanel(next) {
-		var x = document.getElementById("accordion").accordion();
-		var active = $( "accordion" ).accordion( "option", "active");
-		$( "accordion" ).accordion("option", "activate", next);
+
+		function openNextAccordionPanel(storyId) {
+			$( function() {
+				var $accordion = $( "#accordion" ).accordion({
+					active: storyId,
+						 collapsible: true
+				});
+			});
 	}
 
 		</script>
