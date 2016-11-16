@@ -28,7 +28,8 @@ font-size: 31pt;
 }
 #about-me {
 color: black;
-font-size: 14pt;
+font-size: 16pt;
+font-weight: bold;
 }
 
 
@@ -55,4 +56,8 @@ margin: 5%;
     bottom: 0px;
     pointer-events: none;
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(113, 191, 69, 0)), to(lightgray));
+}
+
+element.style {
+  height:100%;
 }

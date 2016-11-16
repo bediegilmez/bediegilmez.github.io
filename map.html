@@ -17,6 +17,7 @@
 	 var $accordion = $( "#accordion" ).accordion({
 		 active: 0,
         collapsible: true,
+				heightStyle: "content",
 	 });
  } );
 
@@ -26,7 +27,6 @@
 <script>
 var stories;
 var storiesLen;
-//$.getJSON('stories.json', function(data) {
 	$.getJSON('https://bediegilmez.github.io/stories.json', function(data) {
 	stories = data;
 	storiesLen = Object.keys(stories).length;
@@ -86,14 +86,20 @@ function CenterControl(controlDiv, map) {
 	var targetStory = 0;
 
 	goRight.addEventListener('click', function() {
-		if (targetStory < storiesLen){
-			targetStory +=1;
+
+			if (targetStory < storiesLen){
+				targetStory +=1;
+			}
+			else{
+				targetStory = storiesLen - 1;
+			}
+			if (targetStory == storiesLen - 1) {
+				zoomOutAndCenter(targetStory);
+			}
+			else{
+			goToStory(targetStory);
 		}
-		else{
-			targetStory = storiesLen - 1;
-		}
-		goToStory(targetStory);
-		openNextAccordionPanel(targetStory);
+			openNextAccordionPanel(targetStory);
 	});
 
 	goLeft.addEventListener('click', function() {
@@ -103,11 +109,15 @@ function CenterControl(controlDiv, map) {
 		else{
 			targetStory = 0;
 		}
+		if (targetStory == storiesLen - 1) {
+			zoomOutAndCenter(targetStory);
+		}
+		else{
 		goToStory(targetStory);
+		}
 		openNextAccordionPanel(targetStory);
 	});
 }
-
 var marker;
 var map;
 function initMap() {
@@ -160,11 +170,14 @@ function newLocation(newLat,newLng,z)
 		}
 	}
 
-	function zoomOutAndCenter(tempLat,tempLng,zoomLevel){
-		map.setZoom(zoomLevel);
+	function zoomOutAndCenter(storyId){
+		lat = parseFloat(stories[storyId.toString()]["lat"]);
+		lng = parseFloat(stories[storyId.toString()]["lng"]);
+		zoom = parseInt(stories[storyId.toString()]["zoom"]);
+		map.setZoom(2);
 		map.setCenter({
-			lat : tempLat,
-			lng : tempLng});
+			lat : lat,
+			lng : lng});
 		};
 
 		function justZoomIn(zoomLevel){
@@ -204,15 +217,15 @@ function newLocation(newLat,newLng,z)
 				<div id="map"></div>
 				<div id="words">
 					<div style="float:left; position:absolute;">
-						<h1 style="padding: 10px;">Hello, I'm Bedi!</h1>
+						<h1 style="padding: 10px;">Hi! I'm Bedi,</h1>
 <div id="accordion">
   <h3>Sivas, Turkey</h3>
   <div>
-    Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
-    ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
-    amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
-    odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
-  </div>
+		&nbsp; is the city that I was born in. It's located in the middle of the country,
+		home of modern era's <a href="https://en.wikipedia.org/wiki/%C3%82%C5%9F%C4%B1k_Veysel_%C5%9Eat%C4%B1ro%C4%9Flu">
+			greatest poet</a>. It's <a href="https://goo.gl/maps/pdxmkm8jnuD2">airport</a>
+			also has the longest airport runway in Turkey.
+		</div>
   <h3>Mersin, Turkey</h3>
   <div>
     <p>
@@ -282,6 +295,12 @@ function newLocation(newLat,newLng,z)
 		inceptos himenaeos.
 		</p>
 	</div>
+	<h3>&nbsp;</h3>
+	<div>
+		<p>
+		sum mznig crz shityo
+		</p>
+	</div>
 </div>
 
 					</div>
@@ -310,6 +329,7 @@ function newLocation(newLat,newLng,z)
 					padding: 0;
 					background-color: rgb(209, 209, 209);
 				}
+
 				</style>
 
 				</html>
